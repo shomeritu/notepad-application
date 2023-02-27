@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            Login Form
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Enter your credentials to proceed</h5>
+                            <div class="card-text">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Email or Username</label>
+                                    <input matInput type="email" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Type your email ..." [formControlName]="'email'">
+                                    <mat-error
+                                        *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">
+                                        Please enter an email address
+                                    </mat-error>
+                                    <mat-error
+                                        *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')">
+                                        Please enter a valid email address with correct pattern
+                                    </mat-error>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Enter password ..." [formControlName]="'password'">
+                                </div>
+                                <mat-error *ngIf="loginForm.touched && loginForm.hasError('userTypeValidator')">
+                                    You are not allowed to login with admin credentials
+                                </mat-error>
+                            </div>
+                            <button mat-raised-button class="btn btn-primary">Login</button>
+
+                        </div>
+                        <div class="card-footer">
+                            Don't have any account ? <a [routerLink]="'/login'"
+                                [ngStyle]="{'color': 'black' , 'font-weight': 'bold' , 'font-size': '12px'}">Sign Up
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
